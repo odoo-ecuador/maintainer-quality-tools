@@ -33,6 +33,10 @@ addons:
 env:
   global:
   - VERSION="8.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  - PHANTOMJS_VERSION="latest"
+  # The above line controls the PhantomJS version that is used for JS testing.
+  #   It is not necessary to include this value unless you are altering the default.
+  #   Use `OS` to skip the PhantomJS upgrade & use the system version instead.
   - TRANSIFEX_USER='transbot@odoo-community.org'
   # This line contains the encrypted transifex password
   # To encrypt transifex password, install travis ruby utils with:
@@ -65,6 +69,12 @@ env:
 
 virtualenv:
   system_site_packages: true
+
+# Enable this if your repository needs sass command (needed for website related repos)
+#before_install:
+#  - rvm install ruby --latest
+#  - gem install bootstrap-sass
+#  - gem install compass --pre
 
 install:
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
